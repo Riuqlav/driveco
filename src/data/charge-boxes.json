@@ -1,0 +1,329 @@
+{
+  "chargeboxes": [
+    {
+      "identifier": "ssd:charge-box:646b7dd3-671d-3dc6-a958-b2",
+      "name": "Lemoine 10",
+      "type": "Kino Urban",
+      "location": {
+        "latitude": 48.848425,
+        "longitude": 2.336816
+      },
+      "address": "10 Rue Lemoine",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "free"
+    },
+    {
+      "identifier": "ssd:charge-box:12cfd45e-7a3e-4f3d-bc7a-8d17d8",
+      "name": "Rivoli 20",
+      "type": "Kino Pro",
+      "location": {
+        "latitude": 48.857035,
+        "longitude": 2.346522
+      },
+      "address": "20 Rue de Rivoli",
+      "city": "Paris",
+      "zipcode": "75001",
+      "status": "in_use"
+    },
+    {
+      "identifier": "ssd:charge-box:646b7dd3-671d-3dc6-a958-b2",
+      "name": "Lemoine 10",
+      "type": "Kino Urban",
+      "location": {
+        "latitude": 48.848425,
+        "longitude": 2.336816
+      },
+      "address": "10 Rue Lemoine",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "free"
+    },
+    {
+      "identifier": "ssd:charge-box:a2f5d7e1-8c4b-491e-a23f-ff3ac2",
+      "name": "Louvre 15",
+      "type": "Kino One",
+      "location": {
+        "latitude": 48.860611,
+        "longitude": 2.337644
+      },
+      "address": "15 Rue du Louvre",
+      "city": "Paris",
+      "zipcode": "75001",
+      "status": "booked"
+    },
+    {
+      "identifier": "ssd:charge-box:646b7dd3-671d-3dc6-a958-b2",
+      "name": "Lemoine 10",
+      "type": "Kino Urban",
+      "location": {
+        "latitude": 48.848425,
+        "longitude": 2.336816
+      },
+      "address": "10 Rue Lemoine",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "free"
+    },
+    {
+      "identifier": "ssd:charge-box:12cfd45e-7a3e-4f3d-bc7a-8d17d8",
+      "name": "Rivoli 20",
+      "type": "Kino Pro",
+      "location": {
+        "latitude": 48.857035,
+        "longitude": 2.346522
+      },
+      "address": "20 Rue de Rivoli",
+      "city": "Paris",
+      "zipcode": "75001",
+      "status": "in_use"
+    },
+    {
+      "identifier": "ssd:charge-box:a2f5d7e1-8c4b-491e-a23f-ff3ac2",
+      "name": "Louvre 15",
+      "type": "Kino One",
+      "location": {
+        "latitude": 48.860611,
+        "longitude": 2.337644
+      },
+      "address": "15 Rue du Louvre",
+      "city": "Paris",
+      "zipcode": "75001",
+      "status": "booked"
+    },
+    {
+      "identifier": "ssd:charge-box:25c4e58d-90af-4a85-9b29-27b825",
+      "name": "Beaubourg 5",
+      "type": "Kino Pro",
+      "location": {
+        "latitude": 48.860463,
+        "longitude": 2.351448
+      },
+      "address": "5 Rue Beaubourg",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "free"
+    },
+    {
+      "identifier": "ssd:charge-box:ea986c29-68e5-4f39-9b1c-b2906c",
+      "name": "Pompidou 8",
+      "type": "Kino Urban",
+      "location": {
+        "latitude": 48.860717,
+        "longitude": 2.352557
+      },
+      "address": "8 Rue du Renard",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "in_use"
+    },
+    {
+      "identifier": "ssd:charge-box:646b7dd3-671d-3dc6-a958-b2",
+      "name": "Lemoine 10",
+      "type": "Kino Urban",
+      "location": {
+        "latitude": 48.848425,
+        "longitude": 2.336816
+      },
+      "address": "10 Rue Lemoine",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "free"
+    },
+    {
+      "identifier": "ssd:charge-box:12cfd45e-7a3e-4f3d-bc7a-8d17d8",
+      "name": "Rivoli 20",
+      "type": "Kino Pro",
+      "location": {
+        "latitude": 48.857035,
+        "longitude": 2.346522
+      },
+      "address": "20 Rue de Rivoli",
+      "city": "Paris",
+      "zipcode": "75001",
+      "status": "in_use"
+    },
+    {
+      "identifier": "ssd:charge-box:a2f5d7e1-8c4b-491e-a23f-ff3ac2",
+      "name": "Louvre 15",
+      "type": "Kino One",
+      "location": {
+        "latitude": 48.860611,
+        "longitude": 2.337644
+      },
+      "address": "15 Rue du Louvre",
+      "city": "Paris",
+      "zipcode": "75001",
+      "status": "booked"
+    },
+    {
+      "identifier": "ssd:charge-box:25c4e58d-90af-4a85-9b29-27b825",
+      "name": "Beaubourg 5",
+      "type": "Kino Pro",
+      "location": {
+        "latitude": 48.860463,
+        "longitude": 2.351448
+      },
+      "address": "5 Rue Beaubourg",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "free"
+    },
+    {
+      "identifier": "ssd:charge-box:ea986c29-68e5-4f39-9b1c-b2906c",
+      "name": "Pompidou 8",
+      "type": "Kino Urban",
+      "location": {
+        "latitude": 48.860717,
+        "longitude": 2.352557
+      },
+      "address": "8 Rue du Renard",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "in_use"
+    },
+    {
+      "identifier": "ssd:charge-box:c1207f5e-8b5a-4f7e-88d5-56f5d3",
+      "name": "Sébastopol 12",
+      "type": "Kino Urban",
+      "location": {
+        "latitude": 48.862318,
+        "longitude": 2.352181
+      },
+      "address": "12 Boulevard de Sébastopol",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "free"
+    },
+    {
+      "identifier": "ssd:charge-box:490fdbad-dff3-4b48-8f67-d182a8",
+      "name": "Saint-Antoine 7",
+      "type": "Kino One",
+      "location": {
+        "latitude": 48.853131,
+        "longitude": 2.366416
+      },
+      "address": "7 Rue Saint-Antoine",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "in_use"
+    },
+    {
+      "identifier": "ssd:charge-box:8a1c5c24-68a9-490d-b846-1e8d1e",
+      "name": "Saint-Paul 18",
+      "type": "Kino Pro",
+      "location": {
+        "latitude": 48.854992,
+        "longitude": 2.360965
+      },
+      "address": "18 Rue Saint-Paul",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "free"
+    },
+    {
+      "identifier": "ssd:charge-box:f70d5e51-9e7e-47ef-8a17-5d63fc",
+      "name": "Tournelles 22",
+      "type": "Kino Urban",
+      "location": {
+        "latitude": 48.856357,
+        "longitude": 2.367116
+      },
+      "address": "22 Rue des Tournelles",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "booked"
+    },
+    {
+      "identifier": "ssd:charge-box:3d7ac0c6-b3c4-4b59-bd4f-03ae0a",
+      "name": "Bourg-Tibourg 9",
+      "type": "Kino Pro",
+      "location": {
+        "latitude": 48.857294,
+        "longitude": 2.358761
+      },
+      "address": "9 Rue du Bourg-Tibourg",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "free"
+    },
+    {
+      "identifier": "ssd:charge-box:646b7dd3-671d-3dc6-a958-b2",
+      "name": "Lemoine 10",
+      "type": "Kino Urban",
+      "location": {
+        "latitude": 48.848425,
+        "longitude": 2.336816
+      },
+      "address": "10 Rue Lemoine",
+      "city": "Paris",
+      "zipcode": "75004",
+      "status": "free"
+    },
+    {
+      "identifier": "ssd:charge-box:12cfd45e-7a3e-4f3d-bc7a-8d17d8",
+      "name": "Rivoli 20",
+      "type": "Kino Pro",
+      "location": {
+        "latitude": 48.857035,
+        "longitude": 2.346522
+      },
+      "address": "20 Rue de Rivoli",
+      "city": "Paris",
+      "zipcode": "75001",
+      "status": "in_use"
+    },
+    {
+      "identifier": "ssd:charge-box:a2f5d7e1-8c4b-491e-a23f-ff3ac2",
+      "name": "Louvre 15",
+      "type": "Kino One",
+      "location": {
+        "latitude": 48.860611,
+        "longitude": 2.337644
+      },
+      "address": "15 Rue du Louvre",
+      "city": "Paris",
+      "zipcode": "75001",
+      "status": "booked"
+    },
+    {
+      "identifier": "ssd:charge-box:ab6c2f0d-90d3-4e28-bd47-0231a0",
+      "name": "Marais 30",
+      "type": "Kino Urban",
+      "location": {
+        "latitude": 48.857277,
+        "longitude": 2.363887
+      },
+      "address": "30 Rue du Marais",
+      "city": "Paris",
+      "zipcode": "75003",
+      "status": "free"
+    },
+    {
+      "identifier": "ssd:charge-box:acfa80b5-58a2-46e0-8dab-d7ad45",
+      "name": "Bastille 25",
+      "type": "Kino Pro",
+      "location": {
+        "latitude": 48.853308,
+        "longitude": 2.370836
+      },
+      "address": "25 Boulevard de la Bastille",
+      "city": "Paris",
+      "zipcode": "75012",
+      "status": "in_use"
+    },
+    {
+      "identifier": "ssd:charge-box:dfb963e4-3a54-4970-aa28-9f45c1",
+      "name": "Oberkampf 8",
+      "type": "Kino Urban",
+      "location": {
+        "latitude": 48.865137,
+        "longitude": 2.377488
+      },
+      "address": "8 Rue Oberkampf",
+      "city": "Paris",
+      "zipcode": "75011",
+      "status": "free"
+    }
+  ]
+}
