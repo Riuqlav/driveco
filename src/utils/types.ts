@@ -1,12 +1,12 @@
-type GeoLocation = {
+export type GeoLocation = {
   latitude: number;
   longitude: number;
 };
 
-type ChargeBoxStatus = "free" | "in_use" | "booked" | "offline";
-type ChargeBoxType = "kino_pro" | "kino_one" | "kino_urban";
+export type ChargeBoxStatus = "free" | "in_use" | "booked" | "offline";
+export type ChargeBoxType = "kino_pro" | "kino_one" | "kino_urban";
 
-type ChargeBox = {
+export type ChargeBox = {
   identifier: string;
   name: string;
   type: ChargeBoxType;
@@ -15,22 +15,25 @@ type ChargeBox = {
   city: string;
   zipcode: string;
   status: ChargeBoxStatus;
+  distance: number;
+  availability: string;
+  selected: boolean;
 };
 
-type ChargeBoxesResponse = {
+export type ChargeBoxesResponse = {
   chargeboxes: ChargeBox[];
 };
 
-type ChargeBoxParameters = {
+export type ChargeBoxParameters = {
   icon: string;
   picture: string;
   name: string;
 };
 
-type ChargeBoxTypeParameters = {
+export type ChargeBoxTypeParameters = {
   [key in ChargeBoxType]: ChargeBoxParameters;
 };
 
-type ParametersResponse = {
+export type ParametersResponse = {
   chargebox_type: ChargeBoxTypeParameters;
 };
