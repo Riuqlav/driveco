@@ -1,7 +1,6 @@
-//handle the fetching for separationg of responsabilities 
 export const fetchChargeBoxes = async () => {
   try {
-    const response = await fetch('/charge-boxes');
+    const response = await fetch('/src/data/charge-boxes.json');
     const data = await response.json();
     return data.chargeboxes;
   } catch (error) {
@@ -12,7 +11,7 @@ export const fetchChargeBoxes = async () => {
 
 export const fetchParameters = async () => {
   try {
-    const response = await fetch('/parameters.json');
+    const response = await fetch('/src/data/parameters.json');
     const data = await response.json();
     return data;
   } catch (error) {
