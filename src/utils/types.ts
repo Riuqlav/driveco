@@ -16,7 +16,6 @@ export type ChargeBox = {
   zipcode: string;
   status: ChargeBoxStatus;
   distance: number;
-  availability: string;
   selected: boolean;
 };
 
