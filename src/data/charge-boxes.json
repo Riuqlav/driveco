@@ -258,7 +258,7 @@
       "address": "10 Rue Lemoine",
       "city": "Paris",
       "zipcode": "75004",
-      "status": "free"
+      "status": "offline"
     },
     {
       "identifier": "ssd:charge-box:12cfd45e-7a3e-4f3d-bc7a-8d17d8",
@@ -310,7 +310,7 @@
       "address": "25 Boulevard de la Bastille",
       "city": "Paris",
       "zipcode": "75012",
-      "status": "in_use"
+      "status": "offline"
     },
     {
       "identifier": "ssd:charge-box:dfb963e4-3a54-4970-aa28-9f45c1",

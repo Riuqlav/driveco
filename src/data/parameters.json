@@ -1,18 +1,18 @@
 {
   "chargebox_type": {
     "kino_pro": {
-      "icon": "https://via.placeholder.com//640x480.png",
-      "picture": "https://via.placeholder.com//640x480.png",
+      "icon": "/src/assets/green-circle.svg",
+      "picture": "/src/assets/green-circle.svg",
       "name": "Kino Pro 2x50kw"
     },
     "kino_one": {
-      "icon": "https://via.placeholder.com//640x480.png",
-      "picture": "https://via.placeholder.com//640x480.png",
+      "icon": "/src/assets/yellow-circle.svg",
+      "picture": "/src/assets/yellow-circle.svg",
       "name": "Kino One 2x22kw"
     },
     "kino_urban": {
-      "icon": "https://via.placeholder.com//640x480.png",
-      "picture": "https://via.placeholder.com//640x480.png",
+      "icon": "/src/assets/red-circle.svg",
+      "picture": "/src/assets/red-circle.svg",
       "name": "Kino Urban 2x7kw"
     }
   },
