@@ -1,9 +1,9 @@
-import HubList from './components/HubList/HubList'
+import BoxList from './components/HubList/BoxList'
 
 const App = () => {
   return (
     <div>
-      <HubList/>
+      <BoxList/>
     </div>
   )
 }
