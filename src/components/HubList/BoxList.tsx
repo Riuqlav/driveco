@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { fetchChargeBoxes } from '../../services/api';
+import { ChargeBox, GeoLocation } from '../../utils/types';
 import BoxItem from './BoxItem';
-import { ChargeBox } from '../../utils/types';
 
-const BoxList: React.FC = () => {
+type BoxListProps = {
+  userLocation: GeoLocation | null;
+};
+
+const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
   const [chargeBoxes, setChargeBoxes] = useState<ChargeBox[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+
+  console.log("monted")
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,7 +40,7 @@ const BoxList: React.FC = () => {
         <>
           <div className="border rounded-md divide-y divide-gray-300">
             {chargeBoxes.map((box) => (
-              <BoxItem key={box.identifier} box={box} />
+              <BoxItem key={box.identifier} box={box} userLocation={userLocation} />
             ))}
           </div>
           <button
