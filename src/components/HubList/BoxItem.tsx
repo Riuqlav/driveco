@@ -6,35 +6,22 @@ import pointerIcon from '../../assets/pointer.svg';
 import redCircleIcon from '../../assets/red-circle.svg';
 import yellowCircleIcon from '../../assets/yellow-circle.svg';
 import grayCircleIcon from '../../assets/gray-circle.svg';
-import { ChargeBox } from '../../utils/types';
+import { ChargeBox, GeoLocation } from '../../utils/types';
+import { calculateDistance } from '../../utils/distanceCalculator';
 
 type BoxItemProps = {
   box: ChargeBox;
+  userLocation: GeoLocation | null;
 };
 
-const BoxItem: React.FC<BoxItemProps> = ({ box }) => {
-  console.log(box); // Log the box object for debugging purposes
-
-  // State to manage the expanded state of the box item
+const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
   const [expanded, setExpanded] = useState(false);
+  const { name, type, address, status, location } = box;
 
-  // Destructure properties from the box object
-  const {
-    name,
-    type,
-    address,
-    distance,
-    status, // Renamed from 'availability' to 'status'
-  } = box;
-
-  console.log('Status:', status); // Log the status prop to check if it's correctly received
-
-  // Function to toggle the expanded state of the box item
   const toggleExpand = () => {
     setExpanded(!expanded);
   };
 
-  // Function to render the availability icon and text based on the status
   const getAvailabilityIcon = () => {
     switch (status) {
       case 'free':
@@ -69,22 +56,21 @@ const BoxItem: React.FC<BoxItemProps> = ({ box }) => {
         return null;
     }
   };
-  
+
+  const formattedDistance = calculateDistance(userLocation, location);
+
   return (
     <div className="flex flex-col border-b">
       <div className="flex justify-between items-center py-2 px-4">
-        {/* Left section containing the box details */}
         <div className="flex items-center">
           <input type="checkbox" className="mr-4" />
           <span className="mr-4 font-semibold">{name}</span>
           <img src={pointerIcon} alt="Pointer Icon" className="w-5 h-5 mr-4" />
-          <span className="mr-4">{distance} km</span>
+          <span className="mr-4">{formattedDistance}</span>
         </div>
-        {/* Right section containing the availability status and arrow icon */}
         <div className="flex items-center">
           {getAvailabilityIcon()}
         </div>
-        {/* Arrow icon for expanding/collapsing the box item */}
         <img
           src={expanded ? arrowUpIcon : arrowDownIcon}
           alt={expanded ? 'Arrow Up' : 'Arrow Down'}
@@ -92,7 +78,6 @@ const BoxItem: React.FC<BoxItemProps> = ({ box }) => {
           onClick={toggleExpand}
         />
       </div>
-      {/* Additional details displayed when the box item is expanded */}
       {expanded && (
         <div className="px-4 pb-4">
           <p className="mb-2">
@@ -101,7 +86,6 @@ const BoxItem: React.FC<BoxItemProps> = ({ box }) => {
           <p className="mb-4">
             <span className="font-semibold">Address:</span> {address}
           </p>
-          {/* Buttons for navigation and booking */}
           <div className="flex justify-between">
             <button className="px-4 py-2 bg-blue-500 text-white rounded">Navigate on GMaps</button>
             <button className="px-4 py-2 bg-green-500 text-white rounded">Book Charging Session Now</button>
@@ -111,5 +95,5 @@ const BoxItem: React.FC<BoxItemProps> = ({ box }) => {
     </div>
   );
 };
-  
+
 export default BoxItem;
