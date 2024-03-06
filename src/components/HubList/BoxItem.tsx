@@ -61,15 +61,17 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
 
   return (
     <div className="flex flex-col border-b">
-      <div className="flex justify-between items-center py-2 px-4">
-        <div className="flex items-center">
+      <div className="flex py-2 px-4">
+        <div className="flex items-center w-1/3">
           <input type="checkbox" className="mr-4" />
           <span className="mr-4 font-semibold">{name}</span>
+        </div>
+        <div className="flex items-center justify-start w-1/3">
           <img src={pointerIcon} alt="Pointer Icon" className="w-5 h-5 mr-4" />
           <span className="mr-4">{formattedDistance}</span>
         </div>
-        <div className="flex items-center">
-          {getAvailabilityIcon()}
+        <div className="flex items-center justify-start w-1/3">
+        {getAvailabilityIcon()}
         </div>
         <img
           src={expanded ? arrowUpIcon : arrowDownIcon}
@@ -87,8 +89,12 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
             <span className="font-semibold">Address:</span> {address}
           </p>
           <div className="flex justify-between">
-            <button className="px-4 py-2 bg-blue-500 text-white rounded">Navigate on GMaps</button>
-            <button className="px-4 py-2 bg-green-500 text-white rounded">Book Charging Session Now</button>
+            <button className="px-4 py-2 bg-blue-500 text-white rounded">
+              Navigate on GMaps
+            </button>
+            <button className="px-4 py-2 bg-green-500 text-white rounded">
+              Book Charging Session Now
+            </button>
           </div>
         </div>
       )}

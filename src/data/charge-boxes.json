@@ -28,13 +28,13 @@
     },
     {
       "identifier": "ssd:charge-box:646b7dd3-671d-3dc6-a958-b2",
-      "name": "Lemoine 10",
+      "name": "Lemoine 12",
       "type": "Kino Urban",
       "location": {
-        "latitude": 48.848425,
+        "latitude": 48.848423,
         "longitude": 2.336816
       },
-      "address": "10 Rue Lemoine",
+      "address": "12 Rue Lemoine",
       "city": "Paris",
       "zipcode": "75004",
       "status": "free"
@@ -54,13 +54,13 @@
     },
     {
       "identifier": "ssd:charge-box:646b7dd3-671d-3dc6-a958-b2",
-      "name": "Lemoine 10",
+      "name": "Lemoine 11",
       "type": "Kino Urban",
       "location": {
         "latitude": 48.848425,
         "longitude": 2.336816
       },
-      "address": "10 Rue Lemoine",
+      "address": "11 Rue Lemoine",
       "city": "Paris",
       "zipcode": "75004",
       "status": "free"
@@ -122,7 +122,7 @@
       "name": "Lemoine 10",
       "type": "Kino Urban",
       "location": {
-        "latitude": 48.848425,
+        "latitude": 48.848422,
         "longitude": 2.336816
       },
       "address": "10 Rue Lemoine",
@@ -252,7 +252,7 @@
       "name": "Lemoine 10",
       "type": "Kino Urban",
       "location": {
-        "latitude": 48.848425,
+        "latitude": 48.848429,
         "longitude": 2.336816
       },
       "address": "10 Rue Lemoine",
