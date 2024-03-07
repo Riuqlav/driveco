@@ -9,15 +9,16 @@ type BoxListProps = {
 
 const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
   const [chargeBoxes, setChargeBoxes] = useState<ChargeBox[]>([]);
+  const [displayedBoxes, setDisplayedBoxes] = useState<ChargeBox[]>([]);
   const [isLoading, setIsLoading] = useState(true);
-
-  console.log("monted")
+  const itemsToLoad = 5; // Number of items to load per click
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const data = await fetchChargeBoxes();
         setChargeBoxes(data);
+        setDisplayedBoxes(data.slice(0, itemsToLoad));
         setIsLoading(false);
       } catch (error) {
         console.error('Error fetching charge boxes:', error);
@@ -28,8 +29,11 @@ const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
     fetchData();
   }, []);
 
-  const handleLoadMore = async () => {
-    // Add logic to load more charge boxes
+  const handleLoadMore = () => {
+    const startIndex = displayedBoxes.length;
+    const endIndex = startIndex + itemsToLoad;
+    const newBoxes = chargeBoxes.slice(startIndex, endIndex);
+    setDisplayedBoxes([...displayedBoxes, ...newBoxes]);
   };
 
   return (
@@ -39,16 +43,18 @@ const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
       ) : (
         <>
           <div className="border rounded-md divide-y divide-gray-300">
-            {chargeBoxes.map((box) => (
+            {displayedBoxes.map((box) => (
               <BoxItem key={box.identifier} box={box} userLocation={userLocation} />
             ))}
           </div>
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded mt-4"
-            onClick={handleLoadMore}
-          >
-            Load More
-          </button>
+          {displayedBoxes.length < chargeBoxes.length && (
+            <button
+              className="px-4 py-2 bg-blue-500 text-white rounded mt-4"
+              onClick={handleLoadMore}
+            >
+              Load More
+            </button>
+          )}
         </>
       )}
     </div>
