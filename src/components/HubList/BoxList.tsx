@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { fetchChargeBoxes } from '../../services/api';
 import { ChargeBox, GeoLocation } from '../../utils/types';
 import BoxItem from './BoxItem';
+import { calculateDistance } from '../../utils/distanceCalculator';
+import arrowDownIcon from '../../assets/down.png';
+
 
 type BoxListProps = {
   userLocation: GeoLocation | null;
@@ -10,7 +13,7 @@ type BoxListProps = {
 const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
   const [chargeBoxes, setChargeBoxes] = useState<ChargeBox[]>([]);
   const [displayedBoxes, setDisplayedBoxes] = useState<ChargeBox[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isCalculatingDistances, setIsCalculatingDistances] = useState(true);
   const itemsToLoad = 5; // Number of items to load per click
 
   useEffect(() => {
@@ -18,44 +21,63 @@ const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
       try {
         const data = await fetchChargeBoxes();
         setChargeBoxes(data);
-        setDisplayedBoxes(data.slice(0, itemsToLoad));
-        setIsLoading(false);
       } catch (error) {
         console.error('Error fetching charge boxes:', error);
-        setIsLoading(false);
       }
     };
 
     fetchData();
   }, []);
 
+  useEffect(() => {
+    // Calculate distance once data is fetched
+    if (userLocation && chargeBoxes.length > 0) {
+      const calculateDistances = async () => {
+        const boxesWithDistance = chargeBoxes.map(async box => ({
+          ...box,
+          formattedDistance: await calculateDistance(userLocation, box.location)
+        }));
+        const boxesWithResolvedDistance = await Promise.all(boxesWithDistance);
+        setDisplayedBoxes(boxesWithResolvedDistance.slice(0, itemsToLoad));
+        setIsCalculatingDistances(false);
+      };
+      calculateDistances();
+    }
+  }, [userLocation, chargeBoxes, itemsToLoad]);
+
   const handleLoadMore = () => {
     const startIndex = displayedBoxes.length;
     const endIndex = startIndex + itemsToLoad;
-    const newBoxes = chargeBoxes.slice(startIndex, endIndex);
+    const newBoxes = chargeBoxes
+      .slice(startIndex, endIndex)
+      .map(box => ({
+        ...box,
+        formattedDistance: calculateDistance(userLocation, box.location)
+      }));
     setDisplayedBoxes([...displayedBoxes, ...newBoxes]);
   };
 
   return (
-    <div className="container mx-auto p-4">
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <>
-          <div className="border rounded-md divide-y divide-gray-300">
-            {displayedBoxes.map((box) => (
-              <BoxItem key={box.identifier} box={box} userLocation={userLocation} />
-            ))}
-          </div>
+    <div className=" mx-auto p-4 max-w-5xl">
+      {isCalculatingDistances && (
+        <p className="animate-pulse">Calculating distances...</p>
+      )}
+      {!isCalculatingDistances && (
+        <div className="flex flex-col items-center">
+          {displayedBoxes.map(box => (
+            <div key={box.identifier} className="w-full mb-4 p-4 bg-white shadow-md rounded-md">
+              <BoxItem box={box} userLocation={userLocation} />
+            </div>
+          ))}
           {displayedBoxes.length < chargeBoxes.length && (
-            <button
-              className="px-4 py-2 bg-blue-500 text-white rounded mt-4"
+            <img
+              src={arrowDownIcon}
+              alt={"Load More"}
+              className="w-7 h-5 m-10 cursor-pointer"
               onClick={handleLoadMore}
-            >
-              Load More
-            </button>
+            />
           )}
-        </>
+        </div>
       )}
     </div>
   );
