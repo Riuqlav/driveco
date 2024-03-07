@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import arrowDownIcon from '../../assets/arrow-down.svg';
-import arrowUpIcon from '../../assets/arrow-up.svg';
-import greenCircleIcon from '../../assets/green-circle.svg';
-import pointerIcon from '../../assets/pointer.svg';
-import redCircleIcon from '../../assets/red-circle.svg';
-import yellowCircleIcon from '../../assets/yellow-circle.svg';
-import grayCircleIcon from '../../assets/gray-circle.svg';
+import arrowDownIcon from '../../assets/down.png';
+import arrowUpIcon from '../../assets/up.png';
+import greenCircleIcon from '../../assets/green.png';
+import pointerIcon from '../../assets/pointer.png';
+import redCircleIcon from '../../assets/red.png';
+import yellowCircleIcon from '../../assets/yellow.png';
+import grayCircleIcon from '../../assets/gray.png';
 import { ChargeBox, GeoLocation } from '../../utils/types';
 import { calculateDistance } from '../../utils/distanceCalculator';
 
