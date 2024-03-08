@@ -50,7 +50,7 @@ const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
       ) : (
         <div className="flex flex-col items-center">
           <div className="self-start">
-            <img src={'src/assets/Driveco_logo.png'} alt="Driveco Logo" className="h-10" />
+            <img src={'./src/assets/Driveco_logo.png'} alt="Driveco Logo" className="h-10" />
           </div>
           {displayedBoxes.map(({ identifier, ...rest }) => (
             <div key={identifier} className="w-full mb-4 p-4 bg-white shadow-md rounded-md">
@@ -60,7 +60,7 @@ const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
           <div className="text-center">
             {displayedBoxes.length < chargeBoxes.length && (
               <img
-                src={'src/assets/down.png'}
+                src={'./src/assets/down.png'}
                 alt="Load More"
                 className="w-7 h-5 m-10 cursor-pointer"
                 onClick={handleLoadMore}

@@ -21,11 +21,11 @@
         }, [isOpen, map, coordinates]);
 
         const hubIcon = L.icon({
-            iconUrl: 'src/assets/pointerBox.png', 
+            iconUrl: './src/assets/pointerBox.png', 
             iconSize: [40, 40],
         });
         const userIcon = L.icon({
-            iconUrl: 'src/assets/pointerUser.png', 
+            iconUrl: './src/assets/pointerUser.png', 
             iconSize: [40, 40],
         });
 
