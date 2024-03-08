@@ -8,6 +8,7 @@ import yellowCircleIcon from '../../assets/yellow.png';
 import grayCircleIcon from '../../assets/gray.png';
 import { ChargeBox, GeoLocation } from '../../utils/types';
 import { calculateDistance } from '../../utils/distanceCalculator';
+import MapModal from '../MapModal';
 
 type BoxItemProps = {
   box: ChargeBox;
@@ -16,11 +17,13 @@ type BoxItemProps = {
 
 const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
   const [expanded, setExpanded] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const { name, type, address, status, location } = box;
 
   const toggleExpand = () => {
     setExpanded(!expanded);
   };
+
 
   const getAvailabilityIcon = () => {
     switch (status) {
@@ -59,6 +62,10 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
 
   const formattedDistance = calculateDistance(userLocation, location);
 
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
+
   return (
     <div className="flex flex-col border-b">
       <div className="flex py-2 px-4">
@@ -67,11 +74,16 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
           <span className="mr-4 font-semibold">{name}</span>
         </div>
         <div className="flex items-center justify-start w-1/3">
-          <img src={pointerIcon} alt="Pointer Icon" className="w-5 h-5 mr-4" />
+          <img
+            src={pointerIcon}
+            alt="Pointer Icon"
+            className="w-5 h-5 mr-4 cursor-pointer"
+            onClick={toggleModal}
+          />
           <span className="mr-4">{formattedDistance}</span>
         </div>
         <div className="flex items-center justify-start w-1/3">
-        {getAvailabilityIcon()}
+          {getAvailabilityIcon()}
         </div>
         <img
           src={expanded ? arrowUpIcon : arrowDownIcon}
@@ -98,6 +110,16 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
           </div>
         </div>
       )}
+
+{isModalOpen && (
+  <MapModal
+    coordinates={location}
+    isOpen={isModalOpen}
+    onClose={toggleModal}
+    name={name}
+    userLocation={userLocation}
+  />
+)}
     </div>
   );
 };
