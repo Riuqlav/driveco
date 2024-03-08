@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchChargeBoxes } from '../../services/api';
 import { ChargeBox, GeoLocation } from '../../utils/types';
 import BoxItem from './BoxItem';
-import { calculateDistance } from '../../utils/distanceCalculator';
-import arrowDownIcon from '../../assets/down.png';
+import { calculateDistance } from '../../utils/DistanceCalculator';
 
 
 type BoxListProps = {
@@ -71,7 +70,7 @@ const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
           ))}
           {displayedBoxes.length < chargeBoxes.length && (
             <img
-              src={arrowDownIcon}
+              src={'src/assets/down.png'}
               alt={"Load More"}
               className="w-7 h-5 m-10 cursor-pointer"
               onClick={handleLoadMore}

@@ -1,14 +1,7 @@
 import React, { useState } from 'react';
-import arrowDownIcon from '../../assets/down.png';
-import arrowUpIcon from '../../assets/up.png';
-import greenCircleIcon from '../../assets/green.png';
-import pointerIcon from '../../assets/pointer.png';
-import redCircleIcon from '../../assets/red.png';
-import yellowCircleIcon from '../../assets/yellow.png';
-import grayCircleIcon from '../../assets/gray.png';
 import { ChargeBox, GeoLocation } from '../../utils/types';
-import { calculateDistance } from '../../utils/distanceCalculator';
-import MapModal from '../MapModal';
+import { calculateDistance } from '../../utils/DistanceCalculator';
+import MapModal from '../../utils/MapModal';
 
 type BoxItemProps = {
   box: ChargeBox;
@@ -24,44 +17,30 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
     setExpanded(!expanded);
   };
 
-
   const getAvailabilityIcon = () => {
-    switch (status) {
-      case 'free':
-        return (
-          <div className="flex items-center">
-            <img src={greenCircleIcon} alt="Green Circle" className="w-5 h-5 mr-2" />
-            <span>Available</span>
-          </div>
-        );
-      case 'in_use':
-        return (
-          <div className="flex items-center">
-            <img src={redCircleIcon} alt="Red Circle" className="w-5 h-5 mr-2" />
-            <span>In Use</span>
-          </div>
-        );
-      case 'booked':
-        return (
-          <div className="flex items-center">
-            <img src={yellowCircleIcon} alt="Yellow Circle" className="w-5 h-5 mr-2" />
-            <span>Booked</span>
-          </div>
-        );
-      case 'offline':
-        return (
-          <div className="flex items-center">
-            <img src={grayCircleIcon} alt="Gray Circle" className="w-5 h-5 mr-2" />
-            <span>Offline</span>
-          </div>
-        );
-      default:
-        return null;
-    }
+    return (
+      <div className="flex items-center">
+        <img
+          src={`src/assets/${status === 'free' ? 'green.png' : status === 'in_use' ? 'red.png' : status === 'booked' ? 'yellow.png' : status === 'offline' ? 'gray.png' : ''}`}
+          alt={`${status === 'free' ? 'Green' : status === 'in_use' ? 'Red' : status === 'booked' ? 'Yellow' : status === 'offline' ? 'Gray' : ''} Circle`}
+          className="w-5 h-5 mr-2"
+        />
+        <span>
+          {status === 'free'
+            ? 'Available'
+            : status === 'in_use'
+            ? 'In Use'
+            : status === 'booked'
+            ? 'Booked'
+            : status === 'offline'
+            ? 'Offline'
+            : ''}
+        </span>
+      </div>
+    );
   };
 
   const formattedDistance = calculateDistance(userLocation, location);
-
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
@@ -75,7 +54,7 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
         </div>
         <div className="flex items-center justify-start w-1/3">
           <img
-            src={pointerIcon}
+            src="src/assets/pointer.png"
             alt="Pointer Icon"
             className="w-5 h-5 mr-4 cursor-pointer"
             onClick={toggleModal}
@@ -86,7 +65,7 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
           {getAvailabilityIcon()}
         </div>
         <img
-          src={expanded ? arrowUpIcon : arrowDownIcon}
+          src={expanded ? 'src/assets/up.png' : 'src/assets/down.png'}
           alt={expanded ? 'Arrow Up' : 'Arrow Down'}
           className="w-5 h-5 cursor-pointer"
           onClick={toggleExpand}
@@ -101,25 +80,42 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
             <span className="font-semibold">Address:</span> {address}
           </p>
           <div className="flex justify-between">
-            <button className="px-4 py-2 bg-blue-500 text-white rounded">
-              Navigate on GMaps
-            </button>
-            <button className="px-4 py-2 bg-green-500 text-white rounded">
-              Book Charging Session Now
-            </button>
+          <button 
+  className="flex items-center px-4 py-2 bg-blue-500 text-white rounded" 
+  onClick={() => window.open('https://www.google.com/maps', '_blank')}
+>
+  <img
+    src="src/assets/pointerBox.png"
+    alt="Pointer Icon"
+    className="w-5 h-5 mr-2"
+  />
+  Navigate on GMaps
+</button>
+
+<button 
+  className="flex items-center px-4 py-2 bg-green-500 text-white rounded" 
+  onClick={() => window.open('https://driveco.com/en/retail/', '_blank')}
+>
+  <img
+    src="src/assets/key.png"
+    alt="Key Icon"
+    className="w-5 h-5 mr-2"
+  />
+  Book Charging Session Now
+</button>
+
           </div>
         </div>
       )}
-
-{isModalOpen && (
-  <MapModal
-    coordinates={location}
-    isOpen={isModalOpen}
-    onClose={toggleModal}
-    name={name}
-    userLocation={userLocation}
-  />
-)}
+      {isModalOpen && (
+        <MapModal
+          coordinates={location}
+          isOpen={isModalOpen}
+          onClose={toggleModal}
+          name={name}
+          userLocation={userLocation}
+        />
+      )}
     </div>
   );
 };
