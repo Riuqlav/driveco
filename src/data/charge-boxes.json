@@ -5,7 +5,7 @@
       "name": "Lemoine 10",
       "type": "Kino Urban",
       "location": {
-        "latitude": 48.848425,
+        "latitude": 48.848595,
         "longitude": 2.336816
       },
       "address": "10 Rue Lemoine",
@@ -18,7 +18,7 @@
       "name": "Rivoli 20",
       "type": "Kino Pro",
       "location": {
-        "latitude": 48.857035,
+        "latitude": 48.857015,
         "longitude": 2.346522
       },
       "address": "20 Rue de Rivoli",
@@ -31,13 +31,13 @@
       "name": "Lemoine 12",
       "type": "Kino Urban",
       "location": {
-        "latitude": 48.848423,
+        "latitude": 48.848153,
         "longitude": 2.336816
       },
       "address": "12 Rue Lemoine",
       "city": "Paris",
       "zipcode": "75004",
-      "status": "free"
+      "status": "offline"
     },
     {
       "identifier": "ssd:charge-box:a2f5d7e1-8c4b-491e-a23f-ff3ac2",
@@ -57,7 +57,7 @@
       "name": "Lemoine 11",
       "type": "Kino Urban",
       "location": {
-        "latitude": 48.848425,
+        "latitude": 48.848479,
         "longitude": 2.336816
       },
       "address": "11 Rue Lemoine",
@@ -83,7 +83,7 @@
       "name": "Louvre 15",
       "type": "Kino One",
       "location": {
-        "latitude": 48.860611,
+        "latitude": 48.860641,
         "longitude": 2.337644
       },
       "address": "15 Rue du Louvre",
