@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { ChargeBox, GeoLocation } from '../../utils/types';
 import { calculateDistance } from '../../utils/DistanceCalculator';
 import MapModal from '../../utils/MapModal';
@@ -11,39 +11,44 @@ type BoxItemProps = {
 const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
   const [expanded, setExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { name, type, address, status, location } = box;
 
-  const toggleExpand = () => {
-    setExpanded(!expanded);
+  const { name, type, address, status, location, city, zipcode } = box;
+
+  const toggleExpand = () => setExpanded((prevExpanded) => !prevExpanded);
+  const toggleModal = () => setIsModalOpen((prevIsModalOpen) => !prevIsModalOpen);
+
+  const statusMap = {
+    free: 'Available',
+    in_use: 'In Use',
+    booked: 'Booked',
+    offline: 'Offline',
   };
 
-  const getAvailabilityIcon = () => {
+  const getAvailabilityIcon = useMemo(() => {
+    const statusText = statusMap[status] || '';
     return (
       <div className="flex items-center">
         <img
-          src={`src/assets/${status === 'free' ? 'green.png' : status === 'in_use' ? 'red.png' : status === 'booked' ? 'yellow.png' : status === 'offline' ? 'gray.png' : ''}`}
-          alt={`${status === 'free' ? 'Green' : status === 'in_use' ? 'Red' : status === 'booked' ? 'Yellow' : status === 'offline' ? 'Gray' : ''} Circle`}
+          src={`src/assets/${
+            status === 'free'
+              ? 'green.png'
+              : status === 'in_use'
+              ? 'red.png'
+              : status === 'booked'
+              ? 'yellow.png'
+              : status === 'offline'
+              ? 'gray.png'
+              : ''
+          }`}
+          alt={`${statusText} Circle`}
           className="w-5 h-5 mr-2"
         />
-        <span>
-          {status === 'free'
-            ? 'Available'
-            : status === 'in_use'
-            ? 'In Use'
-            : status === 'booked'
-            ? 'Booked'
-            : status === 'offline'
-            ? 'Offline'
-            : ''}
-        </span>
+        <span>{statusText}</span>
       </div>
     );
-  };
+  }, [status]);
 
   const formattedDistance = calculateDistance(userLocation, location);
-  const toggleModal = () => {
-    setIsModalOpen(!isModalOpen);
-  };
 
   return (
     <div className="flex flex-col border-b">
@@ -61,9 +66,7 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
           />
           <span className="mr-4">{formattedDistance}</span>
         </div>
-        <div className="flex items-center justify-start w-1/3">
-          {getAvailabilityIcon()}
-        </div>
+        <div className="flex items-center justify-start w-1/3">{getAvailabilityIcon}</div>
         <img
           src={expanded ? 'src/assets/up.png' : 'src/assets/down.png'}
           alt={expanded ? 'Arrow Up' : 'Arrow Down'}
@@ -77,33 +80,23 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
             <span className="font-semibold">Type:</span> {type}
           </p>
           <p className="mb-4">
-            <span className="font-semibold">Address:</span> {address}
+            <span className="font-semibold">Address:</span> {address}, {zipcode} {city}
           </p>
           <div className="flex justify-between">
-          <button 
-  className="flex items-center px-4 py-2 bg-blue-500 text-white rounded" 
-  onClick={() => window.open('https://www.google.com/maps', '_blank')}
->
-  <img
-    src="src/assets/pointerBox.png"
-    alt="Pointer Icon"
-    className="w-5 h-5 mr-2"
-  />
-  Navigate on GMaps
-</button>
-
-<button 
-  className="flex items-center px-4 py-2 bg-green-500 text-white rounded" 
-  onClick={() => window.open('https://driveco.com/en/retail/', '_blank')}
->
-  <img
-    src="src/assets/key.png"
-    alt="Key Icon"
-    className="w-5 h-5 mr-2"
-  />
-  Book Charging Session Now
-</button>
-
+            <button
+              className="flex items-center px-4 py-2 bg-blue-100 text-black rounded border border-black hover:bg-blue-200 transition duration-300 ease-in-out"
+              onClick={() => window.open('https://www.google.com/maps', '_blank')}
+            >
+              <img src="src/assets/pointerBox.png" alt="Pointer Icon" className="w-5 h-5 mr-2" />
+              Navigate on GMaps
+            </button>
+            <button
+              className="flex items-center px-4 py-2 bg-green-100 text-black rounded border border-black hover:bg-green-200 transition duration-300 ease-in-out"
+              onClick={() => window.open('https://driveco.com/en/retail/', '_blank')}
+            >
+              <img src="src/assets/key.png" alt="Key Icon" className="w-5 h-5 mr-2" />
+              Book Charging Session Now
+            </button>
           </div>
         </div>
       )}
