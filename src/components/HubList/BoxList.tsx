@@ -4,7 +4,6 @@ import { ChargeBox, GeoLocation } from '../../utils/types';
 import BoxItem from './BoxItem';
 import { calculateDistance } from '../../utils/DistanceCalculator';
 
-
 type BoxListProps = {
   userLocation: GeoLocation | null;
 };
@@ -12,43 +11,30 @@ type BoxListProps = {
 const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
   const [chargeBoxes, setChargeBoxes] = useState<ChargeBox[]>([]);
   const [displayedBoxes, setDisplayedBoxes] = useState<ChargeBox[]>([]);
-  const [isCalculatingDistances, setIsCalculatingDistances] = useState(true);
-  const itemsToLoad = 5; // Number of items to load per click
+  const [isLoading, setIsLoading] = useState(true);
+  const itemsToLoad = 5;
 
+  // I fetch the charge boxes data from the API on component mount
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const data = await fetchChargeBoxes();
-        setChargeBoxes(data);
-      } catch (error) {
-        console.error('Error fetching charge boxes:', error);
-      }
-    };
-
-    fetchData();
+    fetchChargeBoxes().then(setChargeBoxes);
   }, []);
 
-  useEffect(() => {
-    // Calculate distance once data is fetched
+  // I calculate the distance for each charge box and set the displayed boxes based on the user's location
+    useEffect(() => {
     if (userLocation && chargeBoxes.length > 0) {
-      const calculateDistances = async () => {
-        const boxesWithDistance = chargeBoxes.map(async box => ({
-          ...box,
-          formattedDistance: await calculateDistance(userLocation, box.location)
-        }));
-        const boxesWithResolvedDistance = await Promise.all(boxesWithDistance);
-        setDisplayedBoxes(boxesWithResolvedDistance.slice(0, itemsToLoad));
-        setIsCalculatingDistances(false);
-      };
-      calculateDistances();
+      setIsLoading(true);
+      const boxesWithDistance = chargeBoxes.map(box => ({
+        ...box,
+        formattedDistance: calculateDistance(userLocation, box.location)
+      }));
+      setDisplayedBoxes(boxesWithDistance.slice(0, itemsToLoad));
+      setIsLoading(false);
     }
   }, [userLocation, chargeBoxes, itemsToLoad]);
 
   const handleLoadMore = () => {
-    const startIndex = displayedBoxes.length;
-    const endIndex = startIndex + itemsToLoad;
     const newBoxes = chargeBoxes
-      .slice(startIndex, endIndex)
+      .slice(displayedBoxes.length, displayedBoxes.length + itemsToLoad)
       .map(box => ({
         ...box,
         formattedDistance: calculateDistance(userLocation, box.location)
@@ -56,26 +42,31 @@ const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
     setDisplayedBoxes([...displayedBoxes, ...newBoxes]);
   };
 
+  // I render the component, displaying either a loading message or the list of charge boxes
   return (
-    <div className=" mx-auto p-4 max-w-5xl">
-      {isCalculatingDistances && (
+    <div className="mx-auto p-4 max-w-5xl">
+      {isLoading ? (
         <p className="animate-pulse">Calculating distances...</p>
-      )}
-      {!isCalculatingDistances && (
+      ) : (
         <div className="flex flex-col items-center">
-          {displayedBoxes.map(box => (
-            <div key={box.identifier} className="w-full mb-4 p-4 bg-white shadow-md rounded-md">
-              <BoxItem box={box} userLocation={userLocation} />
+          <div className="self-start">
+            <img src={'src/assets/Driveco_logo.png'} alt="Driveco Logo" className="h-10" />
+          </div>
+          {displayedBoxes.map(({ identifier, ...rest }) => (
+            <div key={identifier} className="w-full mb-4 p-4 bg-white shadow-md rounded-md">
+              <BoxItem box={{ identifier, ...rest }} userLocation={userLocation} />
             </div>
           ))}
-          {displayedBoxes.length < chargeBoxes.length && (
-            <img
-              src={'src/assets/down.png'}
-              alt={"Load More"}
-              className="w-7 h-5 m-10 cursor-pointer"
-              onClick={handleLoadMore}
-            />
-          )}
+          <div className="text-center">
+            {displayedBoxes.length < chargeBoxes.length && (
+              <img
+                src={'src/assets/down.png'}
+                alt="Load More"
+                className="w-7 h-5 m-10 cursor-pointer"
+                onClick={handleLoadMore}
+              />
+            )}
+          </div>
         </div>
       )}
     </div>

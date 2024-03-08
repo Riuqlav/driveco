@@ -12,11 +12,13 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
   const [expanded, setExpanded] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // Destructuring the box object properties for easier access
   const { name, type, address, status, location, city, zipcode } = box;
 
   const toggleExpand = () => setExpanded((prevExpanded) => !prevExpanded);
   const toggleModal = () => setIsModalOpen((prevIsModalOpen) => !prevIsModalOpen);
 
+  // I'm using an object to map the status to the corresponding text for better readability
   const statusMap = {
     free: 'Available',
     in_use: 'In Use',
@@ -24,6 +26,7 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
     offline: 'Offline',
   };
 
+  // decided to useMemo to avoid unnecessary re-renders
   const getAvailabilityIcon = useMemo(() => {
     const statusText = statusMap[status] || '';
     return (
@@ -48,6 +51,7 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
     );
   }, [status]);
 
+  // This calculates the formatted distance from the user's location to the charge box
   const formattedDistance = calculateDistance(userLocation, location);
 
   return (
@@ -74,6 +78,7 @@ const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
           onClick={toggleExpand}
         />
       </div>
+      {/* Expanded details */}
       {expanded && (
         <div className="px-4 pb-4">
           <p className="mb-2">
