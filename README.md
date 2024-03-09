@@ -1,12 +1,17 @@
+
+
 # 🚗⚡️ DriveCo Charge Box Locator 🌍
 
 Welcome to DRIVECO Charge Box Locator, a user-friendly UI list component that seamlessly integrates with users' geolocation to help them find nearby charge boxes for electric vehicles.
 
+Check out the live demo [HERE](https://riuqlav.github.io/driveco/) and experience the DriveCo Charge Box Locator in action!
+
+
 ## Table of Contents
 
 - [Features](#features-)
-- [Demo](#demo-)
 - [Screenshots](#screenshots-)
+- [Demo](#demo-)
 - [Technologies Used](#technologies-used-)
 - [Getting Started](#getting-started-)
 - [Data Schema and API](#data-schema-and-api)
@@ -24,14 +29,14 @@ Welcome to DRIVECO Charge Box Locator, a user-friendly UI list component that se
 - **Interactive Map Modal 🗺️**: Option to view charge box locations and the user's location on an interactive Leaflet map modal for better visualization.
 - **Expandable Rows 🔽**: Expand rows for more detailed information with the downward arrow button, providing easy access to additional details.
 
-## Demo 🎥
-
-Check out the live demo [here](https://riuqlav.github.io/driveco/) and experience the DriveCo Charge Box Locator in action!
 
 ## Screenshots 📸
 
 ![Screenshot 1](https://github.com/Riuqlav/driveco/blob/main/src/assets/screenshot1.png?raw=true)
 ![Screenshot 2](https://github.com/Riuqlav/driveco/blob/main/src/assets/screenshot2.png?raw=true)
+
+## DEMO 🌐
+Check out the live demo [HERE](https://riuqlav.github.io/driveco/) and experience the DriveCo Charge Box Locator in action!
 
 ## Technologies Used 💻
 
