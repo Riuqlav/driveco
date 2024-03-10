@@ -1,7 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { ChargeBox, GeoLocation } from '../../utils/types';
-import { calculateDistance } from '../../utils/DistanceCalculator';
 import MapModal from '../../utils/MapModal';
+import { calculateDistance } from '../../utils/distanceCalculator.tsx';
 
 type BoxItemProps = {
   box: ChargeBox;
@@ -9,7 +9,7 @@ type BoxItemProps = {
 };
 
 const BoxItem: React.FC<BoxItemProps> = ({ box, userLocation }) => {
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState(false); 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Destructuring the box object properties for easier access

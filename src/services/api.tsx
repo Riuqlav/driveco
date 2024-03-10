@@ -9,13 +9,14 @@ export const fetchChargeBoxes = async () => {
   }
 };
 
-export const fetchParameters = async () => {
-  try {
-    const response = await fetch('https://run.mocky.io/v3/5dee5791-8e27-4736-a745-bcc3a61aaa59');
-    const data = await response.json();
-    return data.parameters;
-  } catch (error) {
-    console.error('Error fetching parameters:', error);
-    return {};
-  }
-};
+// export const fetchParameters = async () => {
+//   try {
+//     const response = await fetch('https://run.mocky.io/v3/5dee5791-8e27-4736-a745-bcc3a61aaa59');
+//     const data = await response.json();
+//     return data.parameters;
+//   } catch (error) {
+//     console.error('Error fetching parameters:', error);
+//     return {};
+//   }
+// };
+

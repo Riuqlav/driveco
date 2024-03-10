@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { fetchChargeBoxes } from '../../services/api';
 import { ChargeBox, GeoLocation } from '../../utils/types';
 import BoxItem from './BoxItem';
-import { calculateDistance } from '../../utils/DistanceCalculator';
+import { calculateDistance } from '../../utils/distanceCalculator.tsx';
 
 type BoxListProps = {
   userLocation: GeoLocation | null;
@@ -14,12 +14,11 @@ const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
   const [isLoading, setIsLoading] = useState(true);
   const itemsToLoad = 5;
 
-  // I fetch the charge boxes data from the API on component mount
   useEffect(() => {
     fetchChargeBoxes().then(setChargeBoxes);
   }, []);
 
-  // I calculate the distance for each charge box and set the displayed boxes based on the user's location
+  // This calculate the distance for each charge box and set the displayed boxes based on the user's location
     useEffect(() => {
     if (userLocation && chargeBoxes.length > 0) {
       setIsLoading(true);
@@ -32,6 +31,8 @@ const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
     }
   }, [userLocation, chargeBoxes, itemsToLoad]);
 
+
+
   const handleLoadMore = () => {
     const newBoxes = chargeBoxes
       .slice(displayedBoxes.length, displayedBoxes.length + itemsToLoad)
@@ -42,7 +43,6 @@ const BoxList: React.FC<BoxListProps> = ({ userLocation }) => {
     setDisplayedBoxes([...displayedBoxes, ...newBoxes]);
   };
 
-  // I render the component, displaying either a loading message or the list of charge boxes
   return (
     <div className="mx-auto p-4 max-w-5xl">
       {isLoading ? (

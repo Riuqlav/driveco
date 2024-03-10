@@ -12,7 +12,7 @@ const App = () => {
           longitude: position.coords.longitude,
         };
         setUserLocation(location);
-        console.log('User location:', location); // Add this line
+        console.log('User location:', location);
       },
       (error) => {
         console.error('Error getting location:', error);
