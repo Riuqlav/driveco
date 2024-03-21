@@ -1,27 +1,19 @@
-export interface Location {
-  latitude: number;
-  longitude: number;
-}
-
-export interface UserLocation extends Location {
-  accuracy: number;
-}
-
+// Define the ChargeBox type
 export interface ChargeBox {
   identifier: string;
   name: string;
-  type: ChargeBoxType;
-  location: Location;
+  type: string; // Change to specific ChargeBoxType if available
+  location: {
+    latitude: number;
+    longitude: number;
+  };
   address: string;
   city: string;
   zipcode: string;
-  status: ChargeBoxStatus;
+  status: "free" | "in_use" | "booked" | "offline"; // Specify the exact status values
 }
 
-export type ChargeBoxType = "kino_pro" | "kino_one" | "kino_urban";
-
-export type ChargeBoxStatus = "free" | "in_use" | "booked" | "offline";
-
+// Define the Parameters type
 export interface ChargeBoxTypeDetails {
   icon: string;
   picture: string;
@@ -38,10 +30,6 @@ export interface TranslationStrings {
 }
 
 export interface Parameters {
-  chargebox_type: Record<ChargeBoxType, ChargeBoxTypeDetails>;
+  chargebox_type: Record<string, ChargeBoxTypeDetails>;
   translations: Record<string, TranslationStrings>;
-}
-
-export interface ChargeBoxesResponse {
-  chargeboxes: ChargeBox[];
 }
