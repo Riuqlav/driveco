@@ -1,0 +1,37 @@
+{
+  "chargebox_type": {
+    "kino_pro": {
+      "icon": "/src/assets/sports-car.png",
+      "picture": "/src/assets/sports-car.png",
+      "name": "Kino Pro 2x50kw"
+    },
+    "kino_one": {
+      "icon": "/src/assets/car.png",
+      "picture": "/src/assets/car.png",
+      "name": "Kino One 2x22kw"
+    },
+    "kino_urban": {
+      "icon": "/src/assets/scooter.png",
+      "picture": "/src/assets/scooter.png",
+      "name": "Kino Urban 2x7kw"
+    }
+  },
+  "translations": {
+    "fr": {
+      "chargebox.status.free": "disponible",
+      "chargebox.status.in_use": "occupée",
+      "chargebox.status.booked": "réservée",
+      "chargebox.status.offline": "indisponible",
+      "cta.navigate_gmap": "s'y rendre (Google Maps)",
+      "cta.booking": "réserver une session"
+    },
+    "en": {
+      "chargebox.status.free": "available",
+      "chargebox.status.in_use": "busy",
+      "chargebox.status.booked": "booked",
+      "chargebox.status.offline": "unavailable",
+      "cta.navigate_gmap": "Getting there (Google Maps)",
+      "cta.booking": "book a session"
+    }
+  }
+}
