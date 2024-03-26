@@ -10,6 +10,7 @@ export interface ChargeBox {
   address: string;
   city: string;
   zipcode: string;
+  icon: string;
   status: "free" | "in_use" | "booked" | "offline"; // Specify the exact status values
 }
 
