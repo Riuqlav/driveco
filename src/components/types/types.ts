@@ -1,8 +1,7 @@
-// Define the ChargeBox type
 export interface ChargeBox {
   identifier: string;
   name: string;
-  type: string; // Change to specific ChargeBoxType if available
+  type: string;
   location: {
     latitude: number;
     longitude: number;
@@ -10,8 +9,7 @@ export interface ChargeBox {
   address: string;
   city: string;
   zipcode: string;
-  icon: string;
-  status: "free" | "in_use" | "booked" | "offline"; // Specify the exact status values
+  status: "free" | "in_use" | "booked" | "offline";
 }
 
 // Define the Parameters type
