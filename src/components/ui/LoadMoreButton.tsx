@@ -1,3 +1,4 @@
+// LoadMoreButton.jsx
 import React from 'react';
 
 interface LoadMoreButtonProps {
@@ -6,12 +7,14 @@ interface LoadMoreButtonProps {
 
 const LoadMoreButton: React.FC<LoadMoreButtonProps> = ({ onClick }) => {
   return (
-    <button
-      onClick={onClick}
-      className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600"
-    >
-      Load More
-    </button>
+    <div className="flex justify-center my-4">
+      <img
+        src="src/assets/down.png"
+        alt="Load More"
+        className="w-6 h-6 cursor-pointer"
+        onClick={onClick}
+      />
+    </div>
   );
 };
 

@@ -8,7 +8,7 @@ const ChargeBoxList: React.FC = () => {
   const [chargeBoxes, setChargeBoxes] = useState<ChargeBox[]>([]);
   const [parameters, setParameters] = useState<Parameters | null>(null);
   const [visibleChargeBoxes, setVisibleChargeBoxes] = useState<ChargeBox[]>([]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(5);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -16,7 +16,7 @@ const ChargeBoxList: React.FC = () => {
   }, []);
 
   useEffect(() => {
-    setVisibleChargeBoxes(chargeBoxes.slice(0, currentIndex + 5));
+    setVisibleChargeBoxes(chargeBoxes.slice(0, currentIndex));
   }, [chargeBoxes, currentIndex]);
 
   const fetchData = async () => {
@@ -64,8 +64,15 @@ const ChargeBoxList: React.FC = () => {
           onLocationClick={handleLocationClick}
         />
       ))}
-      {currentIndex + 5 < chargeBoxes.length && (
-        <LoadMoreButton onClick={handleLoadMore} />
+      {currentIndex < chargeBoxes.length && (
+        <div className="flex justify-center my-4">
+          <img
+            src="src/assets/down.png"
+            alt="Load More"
+            className="w-6 h-6 cursor-pointer"
+            onClick={handleLoadMore}
+          />
+        </div>
       )}
     </div>
   );
