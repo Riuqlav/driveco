@@ -6,14 +6,14 @@ export const getChargeBoxes = (): Promise<ChargeBox[]> => {
   return new Promise((resolve) => {
     setTimeout(() => {
       resolve(chargeBoxesData.chargeboxes as ChargeBox[]);
-    }, 1000);
+    }, 1100);
   });
 };
-  
+
 export const getParameters = (): Promise<Parameters> => {
   return new Promise((resolve) => {
     setTimeout(() => {
-      resolve(parametersData as Parameters);
-    }, 1000);
+      resolve(parametersData);
+    }, 1000); // Introduce a delay to simulate API fetch
   });
 };
