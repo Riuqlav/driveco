@@ -1,18 +1,18 @@
 {
   "chargebox_type": {
     "kino_pro": {
-      "icon": "/src/assets/sports-car.png",
-      "picture": "/src/assets/sports-car.png",
+      "icon": "src/assets/sports-car.png",
+      "picture": "src/assets/sports-car.png",
       "name": "Kino Pro 2x50kw"
     },
     "kino_one": {
-      "icon": "/src/assets/car.png",
-      "picture": "/src/assets/car.png",
+      "icon": "src/assets/car.png",
+      "picture": "src/assets/car.png",
       "name": "Kino One 2x22kw"
     },
     "kino_urban": {
-      "icon": "/src/assets/scooter.png",
-      "picture": "/src/assets/scooter.png",
+      "icon": "src/assets/scooter.png",
+      "picture": "src/assets/scooter.png",
       "name": "Kino Urban 2x7kw"
     }
   },
