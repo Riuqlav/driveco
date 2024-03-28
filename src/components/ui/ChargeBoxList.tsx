@@ -53,11 +53,14 @@ const ChargeBoxList: React.FC<ChargeBoxListProps> = ({ userLocation }) => {
   };
 
   if (isLoading) {
-    return <div className='animate-pulse'>Loading location...</div>;
+    return <div className="animate-pulse">Loading location...</div>;
   }
 
   return (
     <div>
+      <div className="flex justify-start items-center mb-4">
+        <img src="src/assets/Driveco_logo.png" alt="Driveco Logo" className="w-32 h-14 m-2" />
+      </div>
       {visibleChargeBoxes.map((chargeBox) => (
         <ChargeBoxItem
           key={chargeBox.identifier}
