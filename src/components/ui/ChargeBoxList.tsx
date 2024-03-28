@@ -2,9 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { ChargeBox, Parameters } from '../types/types';
 import { getChargeBoxes, getParameters } from '../services/api';
 import ChargeBoxItem from './ChargeBoxItem';
-import LoadMoreButton from './LoadMoreButton';
 
-const ChargeBoxList: React.FC = () => {
+interface ChargeBoxListProps {
+  userLocation: { latitude: number; longitude: number };
+}
+
+const ChargeBoxList: React.FC<ChargeBoxListProps> = ({ userLocation }) => {
   const [chargeBoxes, setChargeBoxes] = useState<ChargeBox[]>([]);
   const [parameters, setParameters] = useState<Parameters | null>(null);
   const [visibleChargeBoxes, setVisibleChargeBoxes] = useState<ChargeBox[]>([]);
@@ -50,7 +53,7 @@ const ChargeBoxList: React.FC = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div className='animate-pulse'>Loading location...</div>;
   }
 
   return (
@@ -62,6 +65,7 @@ const ChargeBoxList: React.FC = () => {
           parameters={parameters}
           onDetailsClick={handleDetailsClick}
           onLocationClick={handleLocationClick}
+          userLocation={userLocation}
         />
       ))}
       {currentIndex < chargeBoxes.length && (

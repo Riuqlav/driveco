@@ -1,14 +1,16 @@
-// ChargeBoxItem.jsx
+// ChargeBoxItem.tsx
 import React, { useState } from 'react';
 import { ChargeBox, Parameters } from '../types/types';
 import ChargeBoxStatus from './ChargeBoxStatus';
 import ChargeBoxItemDetails from './ChargeBoxItemDetails';
+import { calculateDistance } from '../utils/distanceCalculator';
 
 interface ChargeBoxItemProps {
   chargeBox: ChargeBox;
   parameters: Parameters | null;
   onDetailsClick: (chargeBox: ChargeBox) => void;
   onLocationClick: (chargeBox: ChargeBox) => void;
+  userLocation: { latitude: number; longitude: number };
 }
 
 const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
@@ -16,9 +18,15 @@ const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
   parameters,
   onDetailsClick,
   onLocationClick,
+  userLocation,
 }) => {
   const { name, location, status, type, address } = chargeBox;
-  const distance = calculateDistance(location.latitude, location.longitude);
+  const distance = calculateDistance(
+    userLocation.latitude, // Pass the user's latitude as lat1
+    userLocation.longitude, // Pass the user's longitude as lon1
+    location.latitude, // Pass the charge box's latitude as lat2
+    location.longitude // Pass the charge box's longitude as lon2
+  );
 
   const getIconUrl = () => {
     const formattedType = type.toLowerCase().replace(/\s+/g, '_');
@@ -32,9 +40,7 @@ const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
 
   console.log('WHOLE THING:', parameters, chargeBox);
   const iconUrl = getIconUrl();
-
   const [expanded, setExpanded] = useState(false);
-
   const toggleDetails = () => {
     setExpanded(!expanded);
   };
@@ -54,7 +60,7 @@ const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
           {/* Distance button */}
           <button className="flex items-center">
             <img src="src/assets/pointer.png" alt="Pointer" className="w-4 h-4 mr-2" />
-            <span>{distance} km</span>
+            <span>{distance.toFixed(2)} km</span>
           </button>
         </div>
         <div className="w-1/3 flex items-center">
@@ -86,10 +92,5 @@ const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
     </div>
   );
 };
-
-function calculateDistance(latitude: number, longitude: number): number {
-  // Implement distance calculation based on user's location
-  return 0; // Replace with actual distance calculation
-}
 
 export default ChargeBoxItem;
