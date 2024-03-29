@@ -1,9 +1,9 @@
-// ChargeBoxItem.tsx
 import React, { useState } from 'react';
 import { ChargeBox, Parameters } from '../types/types';
 import ChargeBoxStatus from './ChargeBoxStatus';
 import ChargeBoxItemDetails from './ChargeBoxItemDetails';
 import { calculateDistance } from '../utils/distanceCalculator';
+import LocationModal from './LocationModal';
 
 interface ChargeBoxItemProps {
   chargeBox: ChargeBox;
@@ -38,11 +38,20 @@ const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
     }
   };
 
-  console.log('WHOLE THING:', parameters, chargeBox);
   const iconUrl = getIconUrl();
   const [expanded, setExpanded] = useState(false);
+  const [showLocationModal, setShowLocationModal] = useState(false);
+
   const toggleDetails = () => {
     setExpanded(!expanded);
+  };
+
+  const handleLocationClick = () => {
+    setShowLocationModal(true);
+  };
+
+  const handleCloseLocationModal = () => {
+    setShowLocationModal(false);
   };
 
   return (
@@ -58,7 +67,7 @@ const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
         </div>
         <div className="w-1/3 flex items-center">
           {/* Distance button */}
-          <button className="flex items-center">
+          <button className="flex items-center" onClick={handleLocationClick}>
             <img src="src/assets/pointer.png" alt="Pointer" className="w-4 h-4 mr-2" />
             <span>{distance.toFixed(2)} km</span>
           </button>
@@ -84,13 +93,17 @@ const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
           </div>
         </div>
       </div>
-      {
-  expanded && (
-    <div className="p-4 pt-0">
-      <ChargeBoxItemDetails type={type} address={address} location={location} />
-    </div>
-  )
-}
+      {expanded && (
+        <div className="p-4 pt-0">
+          <ChargeBoxItemDetails type={type} address={address} location={location} />
+        </div>
+      )}
+      <LocationModal
+        userLocation={userLocation}
+        chargeBoxLocation={location}
+        isOpen={showLocationModal}
+        onClose={handleCloseLocationModal}
+      />
     </div>
   );
 };
