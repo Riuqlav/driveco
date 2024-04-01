@@ -18,20 +18,20 @@
   },
   "translations": {
     "fr": {
-      "chargebox.status.free": "disponible",
-      "chargebox.status.in_use": "occupée",
-      "chargebox.status.booked": "réservée",
-      "chargebox.status.offline": "indisponible",
-      "cta.navigate_gmap": "s'y rendre (Google Maps)",
-      "cta.booking": "réserver une session"
+      "chargebox.status.free": "Disponible",
+      "chargebox.status.in_use": "Occupée",
+      "chargebox.status.booked": "Réservée",
+      "chargebox.status.offline": "Indisponible",
+      "cta.navigate_gmap": "S'y rendre (Google Maps)",
+      "cta.booking": "Réserver une session"
     },
     "en": {
-      "chargebox.status.free": "available",
-      "chargebox.status.in_use": "busy",
-      "chargebox.status.booked": "booked",
-      "chargebox.status.offline": "unavailable",
+      "chargebox.status.free": "Available",
+      "chargebox.status.in_use": "Busy",
+      "chargebox.status.booked": "Booked",
+      "chargebox.status.offline": "Unavailable",
       "cta.navigate_gmap": "Getting there (Google Maps)",
-      "cta.booking": "book a session"
+      "cta.booking": "Book a session"
     }
   }
 }
