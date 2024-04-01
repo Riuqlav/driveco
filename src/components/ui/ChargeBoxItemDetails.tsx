@@ -1,4 +1,6 @@
+
 import React from 'react';
+import { Parameters } from '../types/types';
 
 interface ChargeBoxItemDetailsProps {
   type: string;
@@ -7,9 +9,17 @@ interface ChargeBoxItemDetailsProps {
     latitude: number;
     longitude: number;
   } | null;
+  language: 'fr' | 'en';
+  parameters: Parameters | null; // Add this line
 }
 
-const ChargeBoxItemDetails: React.FC<ChargeBoxItemDetailsProps> = ({ type, address, location }) => {
+const ChargeBoxItemDetails: React.FC<ChargeBoxItemDetailsProps> = ({
+  type,
+  address,
+  location,
+  language,
+  parameters, // Add this line
+}) => {
   const handleNavigateToGmaps = () => {
     let gmapsUrl;
 
@@ -27,6 +37,9 @@ const ChargeBoxItemDetails: React.FC<ChargeBoxItemDetailsProps> = ({ type, addre
     window.open('https://driveco.com/', '_blank');
   };
 
+  const navigateToGmapsText = parameters?.translations[language]['cta.navigate_gmap'];
+  const bookChargingSessionText = parameters?.translations[language]['cta.booking'];
+
   return (
     <div className="flex flex-col">
       <p>
@@ -36,19 +49,19 @@ const ChargeBoxItemDetails: React.FC<ChargeBoxItemDetailsProps> = ({ type, addre
         <strong>Address:</strong> {address}
       </p>
       <div className="mt-2 flex justify-between">
-        <button
+      <button
           className="flex items-center mr-2 bg-blue-200 hover:bg-blue-300 text-black py-2 px-4 rounded border border-black"
           onClick={handleNavigateToGmaps}
         >
           <img src="src/assets/pointerBox.png" alt="Pointer" className="mr-2 h-4 w-4" />
-          Navigate to Gmaps
+          {navigateToGmapsText}
         </button>
         <button
           className="flex items-center bg-green-200 hover:bg-green-300 text-black py-2 px-4 rounded border border-black"
           onClick={handleBookChargingSession}
         >
           <img src="src/assets/key.png" alt="Key" className="mr-2 h-4 w-4" />
-          Book a Charging Session
+          {bookChargingSessionText}
         </button>
       </div>
     </div>

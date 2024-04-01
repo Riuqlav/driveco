@@ -1,12 +1,15 @@
+// src/components/ui/ChargeBoxStatus.tsx
 import React from 'react';
-import { ChargeBox } from '../types/types';
+import { ChargeBox, Parameters } from '../types/types';
 
 interface ChargeBoxStatusProps {
   status: ChargeBox['status'];
+  language: 'fr' | 'en';
+  parameters: Parameters | null; // Add this line
 }
 
-const ChargeBoxStatus: React.FC<ChargeBoxStatusProps> = ({ status }) => {
-  const getIconPath = () => {
+const ChargeBoxStatus: React.FC<ChargeBoxStatusProps> = ({ status, language, parameters }) => {
+   const getIconPath = () => {
     return status === 'free' ? 'src/assets/green.png' :
            status === 'in_use' ? 'src/assets/red.png' :
            status === 'booked' ? 'src/assets/yellow.png' :
@@ -14,14 +17,15 @@ const ChargeBoxStatus: React.FC<ChargeBoxStatusProps> = ({ status }) => {
   };
 
   const iconPath = getIconPath();
+  const availabilityText = parameters?.translations[language][`chargebox.status.${status}`];
 
   return (
-    <>
+    <div className="flex items-center"> {/* Use flex here to align items in a row */}
       {iconPath && (
         <img src={iconPath} alt={status} className="w-6 h-6 mr-2" />
       )}
-      {/* Display the translated status later */}
-    </>
+      <span className="text-m">{availabilityText}</span> {/* TailwindCSS text size utility */}
+    </div>
   );
 };
 

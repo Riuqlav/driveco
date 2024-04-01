@@ -11,6 +11,7 @@ interface ChargeBoxItemProps {
   onDetailsClick: (chargeBox: ChargeBox) => void;
   onLocationClick: (chargeBox: ChargeBox) => void;
   userLocation: { latitude: number; longitude: number };
+  language: 'fr' | 'en';
 }
 
 const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
@@ -19,6 +20,7 @@ const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
   onDetailsClick,
   onLocationClick,
   userLocation,
+  language,
 }) => {
   const { name, location, status, type, address } = chargeBox;
   const distance = calculateDistance(
@@ -60,10 +62,11 @@ const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
         </div>
         <div className="w-1/3 flex items-center">
           <div className="mr-4">
-            <ChargeBoxStatus status={status} />
-          </div>
-          <div>
-            <p>availability</p>
+          <ChargeBoxStatus
+            status={chargeBox.status}
+            language={language}
+            parameters={parameters} // Pass the parameters prop to ChargeBoxStatus
+          />
           </div>
         </div>
         <div className="w-1/12 flex items-center justify-end" onClick={toggleDetails}>
@@ -76,8 +79,14 @@ const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
       </div>
       {expanded && (
         <div className="p-4 pt-0">
-          <ChargeBoxItemDetails type={type} address={address} location={location} />
-        </div>
+   <ChargeBoxItemDetails
+          type={chargeBox.type}
+          address={chargeBox.address}
+          location={chargeBox.location}
+          language={language}
+          parameters={parameters} // Pass the parameters prop
+        />
+          </div>
       )}
       <LocationModal
         userLocation={userLocation}

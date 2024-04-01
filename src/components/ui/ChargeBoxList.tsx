@@ -1,7 +1,9 @@
+// src/components/ui/ChargeBoxList.tsx
 import React, { useState, useEffect } from 'react';
 import { ChargeBox, Parameters } from '../types/types';
 import { getChargeBoxes, getParameters } from '../services/api';
 import ChargeBoxItem from './ChargeBoxItem';
+import parametersData from '../data/parameters.json';
 
 interface ChargeBoxListProps {
   userLocation: { latitude: number; longitude: number };
@@ -56,20 +58,29 @@ const ChargeBoxList: React.FC<ChargeBoxListProps> = ({ userLocation }) => {
     return <div className="animate-pulse">Loading location...</div>;
   }
 
+  const isUserInFrance = () => {
+    // Include your logic to determine if the user is in France
+    return userLocation.latitude >= 41 && userLocation.latitude <= 51 &&
+           userLocation.longitude >= -5 && userLocation.longitude <= 9;
+  };
+
+  const language = isUserInFrance() ? 'fr' : 'en';
+
   return (
     <div>
       <div className="flex justify-start items-center mb-4">
         <img src="src/assets/Driveco_logo.png" alt="Driveco Logo" className="w-32 h-14 m-2" />
       </div>
       {visibleChargeBoxes.map((chargeBox) => (
-        <ChargeBoxItem
-          key={chargeBox.identifier}
-          chargeBox={chargeBox}
-          parameters={parameters}
-          onDetailsClick={handleDetailsClick}
-          onLocationClick={handleLocationClick}
-          userLocation={userLocation}
-        />
+       <ChargeBoxItem
+       key={chargeBox.identifier}
+       chargeBox={chargeBox}
+       parameters={parameters}
+       onDetailsClick={handleDetailsClick}
+       onLocationClick={handleLocationClick}
+       userLocation={userLocation}
+       language={language} // Pass the language down to ChargeBoxItem
+     />
       ))}
       {currentIndex < chargeBoxes.length && (
         <div className="flex justify-center my-4">
