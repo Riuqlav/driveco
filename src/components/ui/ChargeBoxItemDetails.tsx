@@ -1,6 +1,7 @@
-
 import React from 'react';
 import { Parameters } from '../types/types';
+import PointerBoxIcon from '../../assets/pointerBox.png';
+import KeyIcon from '../../assets/key.png';
 
 interface ChargeBoxItemDetailsProps {
   type: string;
@@ -10,7 +11,7 @@ interface ChargeBoxItemDetailsProps {
     longitude: number;
   } | null;
   language: 'fr' | 'en';
-  parameters: Parameters | null; // Add this line
+  parameters: Parameters | null;
 }
 
 const ChargeBoxItemDetails: React.FC<ChargeBoxItemDetailsProps> = ({
@@ -18,7 +19,7 @@ const ChargeBoxItemDetails: React.FC<ChargeBoxItemDetailsProps> = ({
   address,
   location,
   language,
-  parameters, // Add this line
+  parameters,
 }) => {
   const handleNavigateToGmaps = () => {
     let gmapsUrl;
@@ -49,18 +50,18 @@ const ChargeBoxItemDetails: React.FC<ChargeBoxItemDetailsProps> = ({
         <strong>Address:</strong> {address}
       </p>
       <div className="mt-2 flex justify-between">
-      <button
+        <button
           className="flex items-center mr-2 bg-blue-200 hover:bg-blue-300 text-black py-2 px-4 rounded border border-black"
           onClick={handleNavigateToGmaps}
         >
-          <img src="src/assets/pointerBox.png" alt="Pointer" className="mr-2 h-4 w-4" />
+          <img src={PointerBoxIcon} alt="Pointer" className="mr-2 h-4 w-4" />
           {navigateToGmapsText}
         </button>
         <button
           className="flex items-center bg-green-200 hover:bg-green-300 text-black py-2 px-4 rounded border border-black"
           onClick={handleBookChargingSession}
         >
-          <img src="src/assets/key.png" alt="Key" className="mr-2 h-4 w-4" />
+          <img src={KeyIcon} alt="Key" className="mr-2 h-4 w-4" />
           {bookChargingSessionText}
         </button>
       </div>

@@ -2,6 +2,8 @@ import React, { useRef, useEffect } from "react";
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import L from "leaflet";
+import pointerUser from "../../assets/pointerUser.png";
+import pointerBox from "../../assets/pointerBox.png";
 
 interface LocationModalProps {
   userLocation: { latitude: number; longitude: number };
@@ -58,13 +60,13 @@ const LocationModal: React.FC<LocationModalProps> = ({
 
   // Create custom icons
   const userIcon = L.icon({
-    iconUrl: "src/assets/pointerUser.png",
+    iconUrl: pointerUser,
     iconSize: [32, 32],
     iconAnchor: [16, 16],
   });
 
   const chargeBoxIcon = L.icon({
-    iconUrl: "src/assets/pointerBox.png",
+    iconUrl: pointerBox,
     iconSize: [32, 32],
     iconAnchor: [16, 16],
   });

@@ -1,30 +1,35 @@
-// src/components/ui/ChargeBoxStatus.tsx
 import React from 'react';
 import { ChargeBox, Parameters } from '../types/types';
+import greenIcon from '../../assets/green.png';
+import redIcon from '../../assets/red.png';
+import yellowIcon from '../../assets/yellow.png';
+import grayIcon from '../../assets/gray.png';
 
 interface ChargeBoxStatusProps {
   status: ChargeBox['status'];
   language: 'fr' | 'en';
-  parameters: Parameters | null; // Add this line
+  parameters: Parameters | null;
 }
 
 const ChargeBoxStatus: React.FC<ChargeBoxStatusProps> = ({ status, language, parameters }) => {
-   const getIconPath = () => {
-    return status === 'free' ? 'src/assets/green.png' :
-           status === 'in_use' ? 'src/assets/red.png' :
-           status === 'booked' ? 'src/assets/yellow.png' :
-           status === 'offline' ? 'src/assets/gray.png' : '';
-  };
+  const getIconPath = () =>
+    status === 'free'
+      ? greenIcon
+      : status === 'in_use'
+      ? redIcon
+      : status === 'booked'
+      ? yellowIcon
+      : status === 'offline'
+      ? grayIcon
+      : '';
 
   const iconPath = getIconPath();
   const availabilityText = parameters?.translations[language][`chargebox.status.${status}`];
 
   return (
-    <div className="flex items-center"> {/* Use flex here to align items in a row */}
-      {iconPath && (
-        <img src={iconPath} alt={status} className="w-6 h-6 mr-2" />
-      )}
-      <span className="text-m">{availabilityText}</span> {/* TailwindCSS text size utility */}
+    <div className="flex items-center">
+      {iconPath && <img src={iconPath} alt={status} className="w-6 h-6 mr-2" />}
+      <span className="text-m">{availabilityText}</span>
     </div>
   );
 };

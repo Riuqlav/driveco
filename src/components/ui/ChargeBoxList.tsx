@@ -1,9 +1,9 @@
-// src/components/ui/ChargeBoxList.tsx
 import React, { useState, useEffect } from 'react';
 import { ChargeBox, Parameters } from '../types/types';
 import { getChargeBoxes, getParameters } from '../services/api';
 import ChargeBoxItem from './ChargeBoxItem';
-import parametersData from '../data/parameters.json';
+import DrivecoLogo from '../../assets/Driveco_logo.png';
+import DownIcon from '../../assets/down.png';
 
 interface ChargeBoxListProps {
   userLocation: { latitude: number; longitude: number };
@@ -69,23 +69,23 @@ const ChargeBoxList: React.FC<ChargeBoxListProps> = ({ userLocation }) => {
   return (
     <div>
       <div className="flex justify-start items-center mb-4">
-        <img src="src/assets/Driveco_logo.png" alt="Driveco Logo" className="w-32 h-14 m-2" />
+        <img src={DrivecoLogo} alt="Driveco Logo" className="w-32 h-14 m-2" />
       </div>
       {visibleChargeBoxes.map((chargeBox) => (
-       <ChargeBoxItem
-       key={chargeBox.identifier}
-       chargeBox={chargeBox}
-       parameters={parameters}
-       onDetailsClick={handleDetailsClick}
-       onLocationClick={handleLocationClick}
-       userLocation={userLocation}
-       language={language} // Pass the language down to ChargeBoxItem
-     />
+        <ChargeBoxItem
+          key={chargeBox.identifier}
+          chargeBox={chargeBox}
+          parameters={parameters}
+          onDetailsClick={handleDetailsClick}
+          onLocationClick={handleLocationClick}
+          userLocation={userLocation}
+          language={language}
+        />
       ))}
       {currentIndex < chargeBoxes.length && (
         <div className="flex justify-center my-4">
           <img
-            src="src/assets/down.png"
+            src={DownIcon}
             alt="Load More"
             className="w-6 h-6 cursor-pointer"
             onClick={handleLoadMore}

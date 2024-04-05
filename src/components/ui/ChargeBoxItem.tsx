@@ -4,6 +4,14 @@ import ChargeBoxStatus from './ChargeBoxStatus';
 import ChargeBoxItemDetails from './ChargeBoxItemDetails';
 import { calculateDistance } from '../utils/distanceCalculator';
 import LocationModal from './LocationModal';
+import greenIcon from '../../assets/green.png';
+import redIcon from '../../assets/red.png';
+import yellowIcon from '../../assets/yellow.png';
+import grayIcon from '../../assets/gray.png';
+import DrivecoLogo from '../../assets/Driveco_logo.png';
+import PointerIcon from '../../assets/pointer.png';
+import UpIcon from '../../assets/up.png';
+import DownIcon from '../../assets/down.png';
 
 interface ChargeBoxItemProps {
   chargeBox: ChargeBox;
@@ -30,12 +38,10 @@ const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
     location.longitude
   );
 
-  // Retrieves the icon URL for the charge box type, or defaults to a generic icon.
-  const getIconUrl = () => (
+  const getIconUrl = () =>
     parameters && parameters.chargebox_type && parameters.chargebox_type[type.toLowerCase().replace(/\s+/g, '_')]
       ? parameters.chargebox_type[type.toLowerCase().replace(/\s+/g, '_')].icon
-      : 'src/assets/Driveco_logo.png'
-  );
+      : DrivecoLogo;
 
   const iconUrl = getIconUrl();
   const [expanded, setExpanded] = useState(false);
@@ -56,22 +62,18 @@ const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
         </div>
         <div className="w-1/3 flex items-center">
           <button className="flex items-center" onClick={handleLocationClick}>
-            <img src="src/assets/pointer.png" alt="Pointer" className="w-4 h-4 mr-2" />
-            <span>{distance.toFixed(2)} km</span>
+            <img src={PointerIcon} alt="Pointer" className="w-4 h-4 mr-2" />
+            <span>{distance.toFixed(1)} km</span>
           </button>
         </div>
         <div className="w-1/3 flex items-center">
           <div className="mr-4">
-          <ChargeBoxStatus
-            status={chargeBox.status}
-            language={language}
-            parameters={parameters} // Pass the parameters prop to ChargeBoxStatus
-          />
+            <ChargeBoxStatus status={status} language={language} parameters={parameters} />
           </div>
         </div>
         <div className="w-1/12 flex items-center justify-end" onClick={toggleDetails}>
           <img
-            src={expanded ? 'src/assets/up.png' : 'src/assets/down.png'}
+            src={expanded ? UpIcon : DownIcon}
             alt={expanded ? 'Collapse' : 'Expand'}
             className="w-4 h-4 mr-2 cursor-pointer"
           />
@@ -79,14 +81,8 @@ const ChargeBoxItem: React.FC<ChargeBoxItemProps> = ({
       </div>
       {expanded && (
         <div className="p-4 pt-0">
-   <ChargeBoxItemDetails
-          type={chargeBox.type}
-          address={chargeBox.address}
-          location={chargeBox.location}
-          language={language}
-          parameters={parameters} // Pass the parameters prop
-        />
-          </div>
+          <ChargeBoxItemDetails type={type} address={address} location={location} language={language} parameters={parameters} />
+        </div>
       )}
       <LocationModal
         userLocation={userLocation}
