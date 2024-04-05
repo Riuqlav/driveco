@@ -1,19 +1,32 @@
-import chargeBoxesData from '../data/charge-boxes.json';
-import parametersData from '../data/parameters.json';
 import { ChargeBox, Parameters } from '../types/types';
 
-export const getChargeBoxes = (): Promise<ChargeBox[]> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(chargeBoxesData.chargeboxes as ChargeBox[]);
-    }, 1100);
-  });
+const CHARGEBOX_API_URL = 'https://run.mocky.io/v3/5dee5791-8e27-4736-a745-bcc3a61aaa59';
+const PARAMETERS_API_URL = 'https://run.mocky.io/v3/5a699583-9dc5-46a1-8888-52feb04a3dab';
+
+export const getChargeBoxes = async (): Promise<ChargeBox[]> => {
+  try {
+    const response = await fetch(CHARGEBOX_API_URL);
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
+    }
+    const data = await response.json();
+    return data.chargeboxes;
+  } catch (error) {
+    console.error('Error fetching charge boxes:', error);
+    throw error;
+  }
 };
 
-export const getParameters = (): Promise<Parameters> => {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(parametersData);
-    }, 1000); // Introduce a delay to simulate API fetch
-  });
+export const getParameters = async (): Promise<Parameters> => {
+  try {
+    const response = await fetch(PARAMETERS_API_URL);
+    if (!response.ok) {
+      throw new Error(`HTTP error ${response.status}`);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching parameters:', error);
+    throw error;
+  }
 };
